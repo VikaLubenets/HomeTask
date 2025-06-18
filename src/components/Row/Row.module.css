@@ -1,0 +1,21 @@
+.container {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  padding: 10px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+}
