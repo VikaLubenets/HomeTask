@@ -1,18 +1,38 @@
 @font-face {
-    font-family: 'Roboto';
-    src: url('/src/assets/fonts/Roboto/roboto-regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Roboto';
-    src: url('/src/assets/fonts/Roboto/roboto-bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-  
+  font-family: 'Roboto';
+  src: url('/src/assets/fonts/Roboto/roboto-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/src/assets/fonts/Roboto/roboto-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --color-btn-green: #2ae881;
+  --color-btn-yellow: #fce300;
+  --color-btn-black: #201b10;
+  --color-btn-inactive: #c0c0c0;
+
+  --color-primary: #cb81ff;
+  --color-secondary: #2ae881;
+  --color-black: #201b10;
+  --color-white: #ffffff;
+  --color-orange: #ff5f00;
+  --color-accent-primary: #eacdff;
+  --color-accent-secondary: #d4fae6;
+
+  --color-background: #fce2ff;
+
+  --color-text: #201b10;
+  --color-inactive-text: #787878;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color-background);
+}

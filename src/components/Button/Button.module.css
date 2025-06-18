@@ -1,0 +1,29 @@
+.button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.GREEN {
+  background-color: var(--color-btn-green);
+  color: var(--color-black);
+}
+
+.YELLOW {
+  background-color: var(--color-btn-yellow);
+  color: var(--color-black);
+}
+
+.BLACK {
+  background-color: var(--color-btn-black);
+  color: var(--color-white);
+}
+
+.INACTIVE {
+  background-color: var(--color-btn-inactive);
+  color: var(--color-inactive-text);
+  cursor: not-allowed;
+}
