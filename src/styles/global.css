@@ -32,7 +32,39 @@
   --color-inactive-text: #787878;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  height: 100%;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
   background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  outline: none;
 }
