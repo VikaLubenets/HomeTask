@@ -51,7 +51,8 @@ export const UploadButton = ({
             onChange={handleChange}
             style={{ display: 'none' }}
           />
-          {fileName || 'Загрузить файл'}
+          {status === 'parcing' && <div className={styles.loader}></div>}
+          {status !== 'parcing' && (fileName || 'Загрузить файл')}
         </label>
 
         {fileName && (
