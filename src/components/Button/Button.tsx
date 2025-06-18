@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 type ButtonStyle = 'GREEN' | 'YELLOW' | 'BLACK' | 'INACTIVE';
 
 type Props = {
-  type?: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit';
   styleType?: ButtonStyle;
   disabled?: boolean;
   children: React.ReactNode;
