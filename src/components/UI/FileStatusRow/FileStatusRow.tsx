@@ -6,20 +6,21 @@ type Props = {
   fileName: string;
   date: string;
   status: FileStatuses;
+  onDelete: (id: string) => void;
 };
 
 const titles: Record<FileStatuses, { title: string; iconSrc: string }> = {
   success: {
     title: 'Обработан успешно',
-    iconSrc: './icons/Smaile.svg',
+    iconSrc: './icons/Smile.svg',
   },
   error: {
     title: 'Не удалось обработать',
-    iconSrc: './icons/ph_smiley-sad.svg',
+    iconSrc: './icons/sad_icon.svg',
   },
 };
 
-export const FileStatusRow = ({ fileName, date, status }: Props) => {
+export const FileStatusRow = ({ fileName, date, status, onDelete }: Props) => {
   return (
     <div className={styles.row}>
       <div className={styles.wrapper}>
@@ -31,27 +32,23 @@ export const FileStatusRow = ({ fileName, date, status }: Props) => {
           />
           <p>{fileName}</p>
         </div>
-        <p>{date}</p>
-        <div
-          className={`${styles.statusContainer} ${status === 'success' ? 'activeStatus' : 'inactiveStatus'}`}
-        >
-          <p>{titles.success.title}</p>
-          <img
-            src={titles.success.iconSrc}
-            alt="smile icon"
-            className={styles.icon}
-          />
-        </div>
-        <div
-          className={`${styles.statusContainer} ${status === 'error' ? 'activeStatus' : 'inactiveStatus'}`}
-        >
-          <p>{titles.error.title}</p>
-          <img
-            src={titles.error.iconSrc}
-            alt="sad icon"
-            className={styles.icon}
-          />
-        </div>
+        <p>{new Date(date).toLocaleDateString('ru-RU')}</p>
+        {(['success', 'error'] as const).map((type) => (
+          <div
+            key={type}
+            className={`${styles.statusContainer} ${
+              status === type ? styles.activeStatus : styles.inactiveStatus
+            }`}
+          >
+            <p>{titles[type].title}</p>
+            <img
+              src={titles[type].iconSrc}
+              alt={`${type} icon`}
+              className={styles.icon}
+            />
+          </div>
+        ))}
+
       </div>
       <div className={styles.deleteBtn}>
         <img src="./icons/Trash.svg" alt="trash icon" className={styles.icon} />
