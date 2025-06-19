@@ -5,6 +5,7 @@ import {
   type AggregateState,
 } from '../api/CsvApi';
 import { readStream } from '../util/readStream';
+import { LStorage } from '../services/storage';
 
 export type UploadButtonStatuses =
   | 'general'
@@ -12,6 +13,14 @@ export type UploadButtonStatuses =
   | 'parcing'
   | 'ready'
   | 'error';
+
+type HistoryStatus = 'success' | 'error';
+
+interface HistoryEntry {
+  fileName: string;
+  date: string;
+  status: HistoryStatus;
+}
 
 interface AnalyticsState {
   file: File | null;
@@ -22,6 +31,8 @@ interface AnalyticsState {
   clear: () => void;
   send: (rows?: number) => Promise<void>;
 }
+
+export const LS_KEY = 'analitics_history';
 
 export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
   file: null,
@@ -38,28 +49,37 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
     const { file, status } = get();
     if (!file || status === 'parcing') return;
 
+    let hadError = false;
+
     try {
       set({ status: 'parcing', result: null });
 
       const stream = await aggregateCsvReport({ rows, file });
       if (!stream) throw new Error('Поток aggregateCsvReport пустой');
 
-      try {
-        for await (const chunk of readStream<AggregateResult>(stream)) {
-          if (!chunk || typeof chunk !== 'object') {
-            console.log('Некорректный чанк', chunk);
-            continue;
-          }
+      for await (const chunk of readStream<AggregateResult>(stream)) {
+        if (!chunk || typeof chunk !== 'object') {
+          console.log('Некорректный чанк', chunk);
+          continue;
         }
-      } catch (inner) {
-        console.log('Ошибка чтения потока', inner);
-        throw inner;
+        set(() => ({ result: chunk }));
       }
 
       set({ status: 'ready' });
     } catch (e) {
-      console.log('send() упал в useAnalyticsStore:', e);
+      hadError = true;
+      console.error('send() упал в useAnalyticsStore:', e);
       set({ error: (e as Error).message, status: 'error' });
+    } finally {
+      const history = LStorage.get<HistoryEntry[]>(LS_KEY) ?? [];
+
+      const newRecord = {
+        fileName: file.name,
+        date: new Date().toISOString(),
+        status: hadError ? 'error' : 'success',
+      };
+
+      LStorage.set(LS_KEY, [...history, newRecord]);
     }
   },
 }));
