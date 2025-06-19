@@ -16,7 +16,8 @@ export type UploadButtonStatuses =
 
 type HistoryStatus = 'success' | 'error';
 
-interface HistoryEntry {
+export interface HistoryEntry {
+  id: string;
   fileName: string;
   date: string;
   status: HistoryStatus;
@@ -74,6 +75,7 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
       const history = LStorage.get<HistoryEntry[]>(LS_KEY) ?? [];
 
       const newRecord = {
+        id: `${Date.now()}`,
         fileName: file.name,
         date: new Date().toISOString(),
         status: hadError ? 'error' : 'success',

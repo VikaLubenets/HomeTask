@@ -1,4 +1,5 @@
 import { useAnalyticsStore } from '../../store/store';
+import { transformDate } from '../../util/transformDate';
 import { Row } from '../UI/Row/Row';
 import styles from './HighlightsSection.module.css';
 
@@ -29,7 +30,7 @@ export const HighlightsSection = () => {
     },
     {
       subtitle: 'день года с минимальными расходами',
-      title: fmt(data.less_spent_at),
+      title: fmt(transformDate(data.less_spent_at)),
     },
     {
       subtitle: 'цивилизация с максимальными расходами',
@@ -41,7 +42,7 @@ export const HighlightsSection = () => {
     },
     {
       subtitle: 'день года с максимальными расходами',
-      title: fmt(data.big_spent_at),
+      title: fmt(transformDate(data.big_spent_at)),
     },
     {
       subtitle: 'максимальная сумма расходов за день',
