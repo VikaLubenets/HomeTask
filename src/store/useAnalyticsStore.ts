@@ -21,6 +21,7 @@ export interface HistoryEntry {
   fileName: string;
   date: string;
   status: HistoryStatus;
+  result?: AggregateState;
 }
 
 interface AnalyticsState {
@@ -73,12 +74,14 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
       set({ error: (e as Error).message, status: 'error' });
     } finally {
       const history = LStorage.get<HistoryEntry[]>(LS_KEY) ?? [];
+      const { result } = get();
 
       const newRecord = {
         id: `${Date.now()}`,
         fileName: file.name,
         date: new Date().toISOString(),
         status: hadError ? 'error' : 'success',
+        result,
       };
 
       LStorage.set(LS_KEY, [...history, newRecord]);

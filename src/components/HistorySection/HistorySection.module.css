@@ -20,3 +20,12 @@
   align-items: center;
   gap: 20px;
 }
+
+.rowWrapper {
+  cursor: pointer;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
