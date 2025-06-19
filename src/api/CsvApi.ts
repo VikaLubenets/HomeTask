@@ -31,11 +31,10 @@ interface AggregateParamsI {
   file: FormData;
 }
 
-interface AggregateResult {
-  totalSpend: number;
-  averageSpend: number;
-  rowsAffected: number;
-}
+export type AggregateResult = {
+  title: string;
+  subtitle: string;
+}[];
 
 export const aggregateData = async ({
   rows,
