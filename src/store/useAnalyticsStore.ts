@@ -46,7 +46,7 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
   clear: () =>
     set({ file: null, status: 'general', result: null, error: null }),
 
-  send: async (rows = 1000) => {
+  send: async (rows = 10000) => {
     const { file, status } = get();
     if (!file || status === 'parcing') return;
 
