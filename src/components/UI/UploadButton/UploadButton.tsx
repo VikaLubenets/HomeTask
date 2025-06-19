@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './UploadButton.module.css';
-import type { UploadButtonStatuses } from '../../../hooks/useCsvUpload';
 import { DeleteIconButton } from '../DeleteIconButton/DeleteIconButton';
-
+import type { UploadButtonStatuses } from '../../../store/store';
+import { Loader } from '../Loader/Loader';
 
 type Props = {
   status: UploadButtonStatuses;
@@ -27,6 +27,12 @@ export const UploadButton = ({
 }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (status === 'general' && inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, [status]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && file.type === 'text/csv') {
@@ -47,13 +53,11 @@ export const UploadButton = ({
             onChange={handleChange}
             style={{ display: 'none' }}
           />
-          {status === 'parcing' && <div className={styles.loader}></div>}
+          {status === 'parcing' && <Loader />}
           {status !== 'parcing' && (fileName || 'Загрузить файл')}
         </label>
 
-        {fileName && (
-          <DeleteIconButton onDelete={onClear} />
-        )}
+        {fileName && <DeleteIconButton onDelete={onClear} />}
       </div>
 
       <p

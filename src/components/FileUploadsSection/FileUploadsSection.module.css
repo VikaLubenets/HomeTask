@@ -1,25 +1,25 @@
 .section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.background{
-    border-radius: 40px;
-    padding: 40px;
-    width: 100%;
+.background {
+  border-radius: 40px;
+  padding: 40px;
+  width: 100%;
 }
 
 .green {
-    background-color: var(--color-accent-secondary);
+  background-color: var(--color-accent-secondary);
 }
 
 .pink {
-    background-color: var(--color-accent-primary);
+  background-color: var(--color-accent-primary);
 }
 
-.text{
-    font-size: 30px;
+.text {
+  font-size: 30px;
 }

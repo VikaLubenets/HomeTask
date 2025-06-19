@@ -1,13 +1,13 @@
 .section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .text {
-    font-size: 30px;
-    text-align: center;
-    font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 400;
 }

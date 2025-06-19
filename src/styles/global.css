@@ -46,7 +46,6 @@ body {
   color: var(--color-text);
 }
 
-
 a {
   text-decoration: none;
   color: inherit;
@@ -56,7 +55,6 @@ ul,
 ol {
   list-style: none;
 }
-
 
 button,
 input,

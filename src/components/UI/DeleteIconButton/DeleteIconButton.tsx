@@ -1,17 +1,13 @@
-import styles from './DeleteIconButton.module.css'
+import styles from './DeleteIconButton.module.css';
 
 type Props = {
-    onDelete: () => void;
-}
+  onDelete: () => void;
+};
 
-export const DeleteIconButton = ({onDelete}: Props) => {
-    return (
-        <div className={styles.iconContainer} onClick={onDelete}>
-            <img
-            src="./icons/cancel.svg"
-            alt="close icon"
-            className={styles.icon}
-            />
-        </div>
-    )
-}
+export const DeleteIconButton = ({ onDelete }: Props) => {
+  return (
+    <div className={styles.iconContainer} onClick={onDelete}>
+      <img src="./icons/cancel.svg" alt="close icon" className={styles.icon} />
+    </div>
+  );
+};
