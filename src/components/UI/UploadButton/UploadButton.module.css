@@ -38,6 +38,7 @@
 .parcing {
   color: var(--color-black);
   background-color: var(--color-primary);
+  min-width: 330px;
 }
 
 .ready {

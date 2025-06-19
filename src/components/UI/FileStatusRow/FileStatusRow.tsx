@@ -48,7 +48,6 @@ export const FileStatusRow = ({ fileName, date, status, onDelete }: Props) => {
             />
           </div>
         ))}
-
       </div>
       <div className={styles.deleteBtn}>
         <img src="./icons/Trash.svg" alt="trash icon" className={styles.icon} />
