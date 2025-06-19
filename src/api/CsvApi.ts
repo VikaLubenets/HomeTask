@@ -61,7 +61,7 @@ export async function aggregateCsvReport({
   });
 
   if (!res.ok) {
-    throw new Error('Failed to aggregate CSV report'); 
+    throw new Error('Failed to aggregate CSV report');
   }
 
   if (!res.body) {
