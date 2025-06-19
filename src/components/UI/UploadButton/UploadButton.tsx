@@ -1,12 +1,7 @@
 import { useRef } from 'react';
 import styles from './UploadButton.module.css';
+import type { UploadButtonStatuses } from '../../../hooks/useCsvUpload';
 
-type UploadButtonStatuses =
-  | 'general'
-  | 'upload'
-  | 'parcing'
-  | 'ready'
-  | 'error';
 
 type Props = {
   status: UploadButtonStatuses;
