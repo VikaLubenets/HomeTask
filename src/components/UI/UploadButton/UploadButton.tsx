@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import styles from './UploadButton.module.css';
 import type { UploadButtonStatuses } from '../../../hooks/useCsvUpload';
+import { DeleteIconButton } from '../DeleteIconButton/DeleteIconButton';
 
 
 type Props = {
@@ -51,13 +52,7 @@ export const UploadButton = ({
         </label>
 
         {fileName && (
-          <div className={styles.iconContainer} onClick={onClear}>
-            <img
-              src="./icons/cancel.svg"
-              alt="close icon"
-              className={styles.icon}
-            />
-          </div>
+          <DeleteIconButton onDelete={onClear} />
         )}
       </div>
 
