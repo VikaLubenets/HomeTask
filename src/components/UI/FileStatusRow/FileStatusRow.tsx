@@ -56,7 +56,13 @@ export const FileStatusRow = ({
           </div>
         ))}
       </div>
-      <div className={styles.deleteBtn} onClick={() => onDelete(id)}>
+      <div
+        className={styles.deleteBtn}
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete(id);
+        }}
+      >
         <img src="./icons/Trash.svg" alt="trash icon" className={styles.icon} />
       </div>
     </div>

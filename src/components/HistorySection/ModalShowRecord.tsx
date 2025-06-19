@@ -25,12 +25,17 @@ export const ModalShowRecord = ({ row, onClose }: Props) => {
 
   return createPortal(
     <div className={styles.backdrop} onClick={onClose}>
-      <div className={styles.modal}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.deleteBtn}>
           <DeleteIconButton onDelete={onClose} />
         </div>
         {rows.map((row) => (
-          <Row key={row.title} title={row.title} subtitle={row.subtitle} />
+          <Row
+            key={row.title}
+            title={row.title}
+            subtitle={row.subtitle}
+            isPinkGg={true}
+          />
         ))}
       </div>
     </div>,
