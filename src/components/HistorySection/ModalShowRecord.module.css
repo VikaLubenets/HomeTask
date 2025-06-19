@@ -1,0 +1,29 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal {
+  position: fixed;
+  top: 253px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  max-height: 1111px;
+  background: var(--color-white);
+  border-radius: 45px 45px 0 0;
+  padding: 40px;
+  overflow: visible;
+  position: relative;
+}
+
+.deleteBtn {
+  position: absolute;
+  right: -82px;
+  top: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+}

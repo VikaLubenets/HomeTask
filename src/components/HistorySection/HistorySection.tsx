@@ -5,9 +5,20 @@ import { Button } from '../UI/Button/Button';
 import { FileStatusRow } from '../UI/FileStatusRow/FileStatusRow';
 import styles from './HistorySection.module.css';
 import { useNavigate } from 'react-router-dom';
+import {
+  ModalShowRecord,
+  type HistoryEntryWithResult,
+} from './ModalShowRecord';
+
+function hasResult(entry: HistoryEntry): entry is HistoryEntryWithResult {
+  return !!entry.result;
+}
 
 export const HistorySection = () => {
   const navigate = useNavigate();
+  const [activeRow, setActiveRow] = useState<HistoryEntryWithResult | null>(
+    null
+  );
   const [data, setData] = useState(
     () => LStorage.get<HistoryEntry[]>(LS_KEY) ?? []
   );
@@ -22,9 +33,22 @@ export const HistorySection = () => {
     <section className={styles.section}>
       {data.length > 0 && (
         <div className={styles.rowsContainer}>
-          {data.map((row) => (
-            <FileStatusRow {...row} onDelete={onDelete} key={row.id} />
-          ))}
+          {data.map((row) => {
+            const canOpenModal = row.status === 'success';
+            return (
+              <div
+                key={row.id}
+                className={`${styles.rowWrapper} ${!canOpenModal ? styles.disabled : ''}`}
+                onClick={() => {
+                  if (canOpenModal && hasResult(row)) {
+                    setActiveRow(row);
+                  }
+                }}
+              >
+                <FileStatusRow {...row} onDelete={() => onDelete(row.id)} />
+              </div>
+            );
+          })}
         </div>
       )}
       <div className={styles.btnContainer}>
@@ -43,6 +67,9 @@ export const HistorySection = () => {
           </Button>
         )}
       </div>
+      {activeRow && activeRow.result && (
+        <ModalShowRecord row={activeRow} onClose={() => setActiveRow(null)} />
+      )}
     </section>
   );
 };
