@@ -4,8 +4,10 @@ import { LS_KEY, type HistoryEntry } from '../../store/useAnalyticsStore';
 import { Button } from '../UI/Button/Button';
 import { FileStatusRow } from '../UI/FileStatusRow/FileStatusRow';
 import styles from './HistorySection.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export const HistorySection = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState(
     () => LStorage.get<HistoryEntry[]>(LS_KEY) ?? []
   );
@@ -26,7 +28,9 @@ export const HistorySection = () => {
         </div>
       )}
       <div className={styles.btnContainer}>
-        <Button>Cгенерировать больше</Button>
+        <Button onClick={() => navigate('/generation')}>
+          Сгенерировать больше
+        </Button>
         {data.length > 0 && (
           <Button
             styleType="BLACK"
