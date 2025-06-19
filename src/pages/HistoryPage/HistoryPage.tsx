@@ -1,8 +1,7 @@
-import styles from './HistoryPage.module.css'
-import { Header } from "../../components/Header/Header";
-import Layout from "../Layout/Layout";
+import styles from './HistoryPage.module.css';
+import { Header } from '../../components/Header/Header';
+import Layout from '../Layout/Layout';
 import { HistorySection } from '../../components/HistorySection/HistorySection';
-
 
 function HistoryPage() {
   return (
@@ -16,4 +15,3 @@ function HistoryPage() {
 }
 
 export default HistoryPage;
-

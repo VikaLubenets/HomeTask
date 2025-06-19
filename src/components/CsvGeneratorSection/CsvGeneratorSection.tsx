@@ -12,15 +12,18 @@ export const CsvGeneratorSection = () => {
       a.download = 'report.csv';
       a.click();
     } else {
-      generate({ size: 50 });
+      generate({ size: 0.1 });
     }
   };
 
   return (
     <section className={styles.section}>
-      <p className={styles.text}>Сгенерируйте готовый csv-файл нажатием одной кнопки</p>
+      <p className={styles.text}>
+        Сгенерируйте готовый csv-файл нажатием одной кнопки
+      </p>
 
       <Button
+        type="button"
         styleType={ui.style}
         disabled={ui.disabled}
         onClick={handleClick}

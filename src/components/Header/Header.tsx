@@ -32,10 +32,7 @@ export const Header = () => {
       </div>
       <nav className={styles.navigation}>
         {links.map((link) => (
-          <NavLink
-            key={link.link}
-            {...link}
-          />
+          <NavLink key={link.link} {...link} />
         ))}
       </nav>
     </header>

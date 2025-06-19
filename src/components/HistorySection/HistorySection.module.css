@@ -1,22 +1,22 @@
 .section {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
-.rowsContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 7.5px;
+.rowsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7.5px;
 }
 
-.btnContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }

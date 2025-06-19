@@ -3,7 +3,6 @@ import AnaliticsPage from '../pages/AnaliticsPage/AnaliticsPage';
 import GeneratorPage from '../pages/GeneratorPage/GeneratorPage';
 import HistoryPage from '../pages/HistoryPage/HistoryPage';
 
-
 function App() {
   return (
     <BrowserRouter>

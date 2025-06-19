@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react';
 import { getCsvReport } from '../api/CsvApi';
 
-
 export type GenStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export function useCsvGenerator() {
@@ -29,13 +28,25 @@ export function useCsvGenerator() {
   const ui = (() => {
     switch (status) {
       case 'loading':
-        return { style: 'YELLOW' as const, title: 'Генерируем...', disabled: true };
+        return {
+          style: 'YELLOW' as const,
+          title: 'Генерируем...',
+          disabled: true,
+        };
       case 'success':
-        return { style: 'GREEN' as const, title: 'Скачать CSV', disabled: false };
+        return {
+          style: 'GREEN' as const,
+          title: 'Скачать CSV',
+          disabled: false,
+        };
       case 'error':
         return { style: 'BLACK' as const, title: 'Повторить', disabled: false };
       default:
-        return { style: 'GREEN' as const, title: 'Начать генерацию', disabled: false };
+        return {
+          style: 'GREEN' as const,
+          title: 'Начать генерацию',
+          disabled: false,
+        };
     }
   })();
 
