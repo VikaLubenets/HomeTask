@@ -8,6 +8,7 @@
 }
 
 .active {
+  padding-bottom: 4px;
   border-bottom: solid 2px black;
 }
 

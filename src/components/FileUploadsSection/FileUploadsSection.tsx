@@ -1,7 +1,7 @@
 import { UploadButton } from '../UI/UploadButton/UploadButton';
 import { Button } from '../UI/Button/Button';
 import styles from './FileUploadsSection.module.css';
-import { useAnalyticsStore } from '../../store/store';
+import { useAnalyticsStore } from '../../store/useAnalyticsStore';
 
 export const FileUploadSection = () => {
   const { file, status, selectFile, clear, send } = useAnalyticsStore();
@@ -18,7 +18,7 @@ export const FileUploadSection = () => {
       >
         <UploadButton
           status={status}
-          fileName={file?.name}
+          title={file?.name}
           onFileSelect={selectFile}
           onClear={clear}
         />

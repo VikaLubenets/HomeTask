@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LStorage } from '../../services/storage';
-import { LS_KEY, type HistoryEntry } from '../../store/store';
+import { LS_KEY, type HistoryEntry } from '../../store/useAnalyticsStore';
 import { Button } from '../UI/Button/Button';
 import { FileStatusRow } from '../UI/FileStatusRow/FileStatusRow';
 import styles from './HistorySection.module.css';
@@ -28,7 +28,7 @@ export const HistorySection = () => {
       <div className={styles.btnContainer}>
         <Button>Cгенерировать больше</Button>
         {data.length > 0 && (
-          <Button 
+          <Button
             styleType="BLACK"
             onClick={() => {
               LStorage.clear();

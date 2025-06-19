@@ -9,8 +9,7 @@ type Props = {
 
 export const NavLink = ({ title, link, iconSrc }: Props) => {
   const location = useLocation();
-  const isActive = location.pathname.includes(link);
-  console.log('link', link, isActive);
+  const isActive = location.pathname === link;
   return (
     <Link
       to={link}

@@ -1,4 +1,4 @@
-import { useAnalyticsStore } from '../../store/store';
+import { useAnalyticsStore } from '../../store/useAnalyticsStore';
 import { transformDate } from '../../util/transformDate';
 import { Row } from '../UI/Row/Row';
 import styles from './HighlightsSection.module.css';
