@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import { useCsvGeneratorStore } from '../../store/useGeneratorStore';
 import { Button } from '../UI/Button/Button';
-import { DeleteIconButton } from '../UI/DeleteIconButton/DeleteIconButton';
 import { UploadButton } from '../UI/UploadButton/UploadButton';
 import styles from './CsvGeneratorSection.module.css';
 
@@ -8,15 +8,19 @@ export const CsvGeneratorSection = () => {
   const { status, generate, fileUrl, clear } = useCsvGeneratorStore();
 
   const handleClick = () => {
+    if (status !== 'loading') {
+      generate({ size: 0.1 });
+    }
+  };
+
+  useEffect(() => {
     if (status === 'success' && fileUrl) {
       const a = document.createElement('a');
       a.href = fileUrl;
       a.download = 'report.csv';
       a.click();
-    } else {
-      generate({ size: 0.1 });
     }
-  };
+  }, [status, fileUrl]);
 
   const statusMap = {
     idle: (

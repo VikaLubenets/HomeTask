@@ -3,6 +3,7 @@ import styles from './FileStatusRow.module.css';
 type FileStatuses = 'success' | 'error';
 
 type Props = {
+  id: string;
   fileName: string;
   date: string;
   status: FileStatuses;
@@ -20,7 +21,13 @@ const titles: Record<FileStatuses, { title: string; iconSrc: string }> = {
   },
 };
 
-export const FileStatusRow = ({ fileName, date, status, onDelete }: Props) => {
+export const FileStatusRow = ({
+  id,
+  fileName,
+  date,
+  status,
+  onDelete,
+}: Props) => {
   return (
     <div className={styles.row}>
       <div className={styles.wrapper}>
@@ -49,7 +56,7 @@ export const FileStatusRow = ({ fileName, date, status, onDelete }: Props) => {
           </div>
         ))}
       </div>
-      <div className={styles.deleteBtn}>
+      <div className={styles.deleteBtn} onClick={() => onDelete(id)}>
         <img src="./icons/Trash.svg" alt="trash icon" className={styles.icon} />
       </div>
     </div>
