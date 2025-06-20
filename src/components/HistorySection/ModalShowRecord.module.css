@@ -1,4 +1,4 @@
-.backdrop {
+.overlay {
   position: fixed;
   inset: 0;
   background: rgba(6, 6, 6, 0.3);
@@ -25,7 +25,7 @@
   justify-content: center;
 }
 
-.deleteBtn {
+.deleteBtnPosition {
   position: absolute;
   right: -82px;
   top: 0;
