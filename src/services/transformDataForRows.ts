@@ -1,7 +1,7 @@
 import type { AggregateResult } from '../api/aggregateCsvReport';
 import { transformDate } from './transformDate';
 
-const fmt = (v: unknown) => (v === undefined || v === null ? '—' : String(v));
+const fmt = <T>(v: T) => (v === undefined || v === null ? '—' : String(v));
 
 export const transformDataForRows = (data: AggregateResult) => {
   const rows = [

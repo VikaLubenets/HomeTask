@@ -1,5 +1,5 @@
 export const transformDate = (dayNum: number): string => {
-  const baseDate = new Date(2020, 0, 1);
+  const baseDate = new Date(2024, 0, 1);
   baseDate.setDate(baseDate.getDate() + dayNum);
 
   const day = baseDate.getDate();
