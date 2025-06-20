@@ -1,54 +1,75 @@
-# React + TypeScript + Vite
+# ШРИ Домашнее задание по React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для загрузки и анализа CSV-файлов, а также генерации случайных отчетов.
 
-Currently, two official plugins are available:
+## Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend:** React 19, Vite, TypeScript, Zustand
+- **Хранение истории:** localStorage
+- **Стили:** CSS Modules
 
-## Expanding the ESLint configuration
+## Установка
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Перед началом убедитесь, что у вас установлен [Node.js](https://nodejs.org/) 
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Верстка выполнена для экрана 1920 пикселей по [этому дизайн-макету](https://www.figma.com/design/9gsmAtcuxaZviXSt34yb2a/%D0%94%D0%97-%D0%A8%D0%A0%D0%98?node-id=0-1&p=f&t=TQAjPMrw4p6jGqKv-0)
+
+Для запуска бекенда используйте [этот репозиторий](https://github.com/etozhenerk/shri2025-back)
+
+### Шаги для запуска проекта
+
+1. Перейдите в вашу рабочую папку и склонируйте репозиторий:
+
+```bash
+git clone https://github.com/VikaLubenets/HomeTask.git
+cd HomeTask
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Установите зависимости фронтенда:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm i
 ```
+
+3. Откройте дополнительный терминал, перейдите в папку с бэкендом и установите зависимости:
+
+```bash
+cd path-to-your-backend-repo
+npm i
+```
+
+4. В дополнительном терминале запустите бекенд сервер:
+
+```bash
+npm run start
+```
+
+Бэкенд будет доступен по адресу: http://localhost:3000
+
+5. Вернитесь в терминал фронтенда и запустите его в дев режиме для тестирования:
+
+```bash
+npm run dev
+```
+
+Фронтенд будет доступен по адресу: http://localhost:5173
+
+
+## Архитектура проекта
+
+```
+├── public/
+├── src/
+│   ├── api/         - дата слой для работы с запросами к серверу
+│   ├── app/         - роутинг приложения
+│   ├── assets/      - хранение доп материалов (шрифты)
+│   ├── components/  - ui-слой со всеми компонентами (как базовыми ui компонентами, так и более сложными)
+│   ├── pages/       - ui-слой со страницами и лейаутом, определяет внешние стили (отступы, марджины и пр)
+│   ├── services/    - слой бизнес-логики
+│   ├── store/       - дата слой для работы со стейт-менеджером
+│   ├── styles/      - папка для глобальных стилей (сброс браузерных стилей, css переменные)
+│   ├── util/        - папка с вспомогательными функциями для проекта (преобразование даты, чтение стрима)
+├── package.json и другие конфигурационные файлы в корне проекта
+```
+
+
