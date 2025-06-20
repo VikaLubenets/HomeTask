@@ -19,7 +19,7 @@ export const useCsvGeneratorStore = create<CsvGeneratorState>((set, get) => ({
     try {
       set({ status: 'loading', error: null });
 
-      const csvText = await getCsvReport({ size, withErrors: 'off' });
+      const csvText = await getCsvReport({ size });
       const blob = new Blob([csvText], { type: 'text/csv' });
       const url = URL.createObjectURL(blob);
 
