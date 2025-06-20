@@ -1,0 +1,29 @@
+.container {
+  color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  padding: 20px;
+  width: 100%;
+}
+
+.bgPink {
+  background-color: var(--color-accent-primary);
+}
+
+.bgWhite {
+  background-color: var(--color-white);
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+}

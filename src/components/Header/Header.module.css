@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logoText {
+  height: 38px;
+  font-size: 30px;
+  background-color: var(--color-primary);
+  color: var(--color-black);
+  text-transform: uppercase;
+  font-style: normal;
+}

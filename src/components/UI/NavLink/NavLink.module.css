@@ -1,0 +1,18 @@
+.link {
+  font-size: 30px;
+  color: var(--color-black);
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.active {
+  padding-bottom: 4px;
+  border-bottom: solid 2px black;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+}
