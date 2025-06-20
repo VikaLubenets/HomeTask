@@ -1,4 +1,4 @@
-import { getDataForRows } from '../../services/getInfoForRows';
+import { transformDataForRows } from '../../services/transformDataForRows';
 import { useAnalyticsStore } from '../../store/useAnalyticsStore';
 import { Row } from '../UI/Row/Row';
 import styles from './HighlightsSection.module.css';
@@ -17,7 +17,7 @@ export const HighlightsSection = () => {
     );
   }
 
-  const rows = getDataForRows(data);
+  const rows = transformDataForRows(data);
 
   return (
     <section className={styles.section}>
