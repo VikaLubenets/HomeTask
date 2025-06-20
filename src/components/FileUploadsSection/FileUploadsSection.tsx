@@ -42,6 +42,8 @@ export const FileUploadSection = () => {
       ? styles.green
       : status === 'general'
         ? styles.pink
+        : status === 'error'
+        ? styles.error 
         : styles.ready;
 
   return (
