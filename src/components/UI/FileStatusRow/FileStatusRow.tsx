@@ -10,14 +10,16 @@ type Props = {
   onDelete: (id: string) => void;
 };
 
-const titles: Record<FileStatuses, { title: string; iconSrc: string }> = {
+const titles: Record<FileStatuses, { title: string; iconSrcActive: string; iconSrcInactive: string }> = {
   success: {
     title: 'Обработан успешно',
-    iconSrc: './icons/Smile.svg',
+    iconSrcActive: './icons/smile_active.svg',
+    iconSrcInactive: './icons/smile_inactive.svg',
   },
   error: {
     title: 'Не удалось обработать',
-    iconSrc: './icons/sad_icon.svg',
+    iconSrcActive: './icons/sad_active.svg',
+    iconSrcInactive: './icons/sad_inactive.svg',
   },
 };
 
@@ -49,7 +51,11 @@ export const FileStatusRow = ({
           >
             <p>{titles[type].title}</p>
             <img
-              src={titles[type].iconSrc}
+              src={
+                status === type
+                  ? titles[type].iconSrcActive
+                  : titles[type].iconSrcInactive
+              }
               alt={`${type} icon`}
               className={styles.icon}
             />
