@@ -79,7 +79,7 @@ export const UploadButton = ({
           </label>
         ) : (
           <button
-            className={`${styles.input} ${styles[status]}`}
+            className={`${styles.input} ${styles[status]} ${isDisabled ? styles.disabled : ''}`}
             type="button"
             onClick={onClick}
             disabled={isDisabled}
@@ -89,7 +89,7 @@ export const UploadButton = ({
           </button>
         )}
 
-        {onClear && (
+        {onClear && (status === 'error' || status === 'ready' || status === 'upload' ) && (
           <DeleteIconButton
             onDelete={() => {
               setIsChoosing?.(false);
