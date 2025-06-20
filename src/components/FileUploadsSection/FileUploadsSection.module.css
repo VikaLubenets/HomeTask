@@ -20,6 +20,10 @@
   background-color: var(--color-accent-primary);
 }
 
+.error {
+  border: solid 1px var(--color-orange);
+}
+
 .ready {
   background-color: transparent;
   border: solid 1px #201b10;
