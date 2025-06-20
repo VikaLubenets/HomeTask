@@ -1,11 +1,11 @@
 import { create } from 'zustand';
-import {
-  aggregateCsvReport,
-  type AggregateResult,
-  type AggregateState,
-} from '../api/CsvApi';
+import { aggregateCsvReport } from '../api';
 import { readStream } from '../util/readStream';
 import { LStorage } from '../services/storage';
+import type {
+  AggregateResult,
+  AggregateState,
+} from '../api/aggregateCsvReport';
 
 export type UploadButtonStatuses =
   | 'general'

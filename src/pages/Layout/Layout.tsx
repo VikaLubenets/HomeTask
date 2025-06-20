@@ -1,3 +1,4 @@
+import { Header } from '../../components/Header/Header';
 import styles from './Layout.module.css';
 
 type Props = {
@@ -8,7 +9,8 @@ type Props = {
 export default function Layout({ children, className }: Props) {
   return (
     <div className={`${styles.layout} ${className ? className : ''}`}>
-      {children}
+      <Header />
+      <div className={styles.wrapper}>{children}</div>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { create } from 'zustand';
-import { getCsvReport } from '../api/CsvApi';
+import { getCsvReport } from '../api';
 
 export type GenStatus = 'idle' | 'loading' | 'success' | 'error';
+
 type CsvGeneratorState = {
   status: GenStatus;
   fileUrl: string | null;
@@ -19,7 +20,7 @@ export const useCsvGeneratorStore = create<CsvGeneratorState>((set, get) => ({
     try {
       set({ status: 'loading', error: null });
 
-      const csvText = await getCsvReport({ size, withErrors: 'off' });
+      const csvText = await getCsvReport({ size });
       const blob = new Blob([csvText], { type: 'text/csv' });
       const url = URL.createObjectURL(blob);
 

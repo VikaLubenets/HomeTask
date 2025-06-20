@@ -9,3 +9,10 @@
   margin-bottom: 40px;
   min-height: calc(100vh - 80px);
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  flex: 1 0 auto;
+}

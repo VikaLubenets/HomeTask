@@ -3,9 +3,9 @@ import styles from './ModalShowRecord.module.css';
 import { useEffect } from 'react';
 import type { HistoryEntry } from '../../store/useAnalyticsStore';
 import { DeleteIconButton } from '../UI/DeleteIconButton/DeleteIconButton';
-import { getDataForRows } from '../HighlightsSection/HighlightsSection';
-import type { AggregateResult } from '../../api/CsvApi';
+import type { AggregateResult } from '../../api';
 import { Row } from '../UI/Row/Row';
+import { transformDataForRows } from '../../services/transformDataForRows';
 
 export type HistoryEntryWithResult = HistoryEntry & { result: AggregateResult };
 
@@ -21,12 +21,12 @@ export const ModalShowRecord = ({ row, onClose }: Props) => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [onClose]);
 
-  const rows = getDataForRows(row.result ?? []);
+  const rows = transformDataForRows(row.result ?? []);
 
   return createPortal(
-    <div className={styles.backdrop} onClick={onClose}>
+    <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.deleteBtn}>
+        <div className={styles.deleteBtnPosition}>
           <DeleteIconButton onDelete={onClose} />
         </div>
         {rows.map((row) => (

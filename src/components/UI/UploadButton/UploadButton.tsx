@@ -11,9 +11,11 @@ type Props = {
   title?: string;
   subtitle?: string;
   onClick?: () => void;
+  isDisabled?: boolean;
+  setIsChoosing?: (v: boolean) => void;
 };
 
-const subtitles: Record<UploadButtonStatuses, string> = {
+const defaultSubtitles: Record<UploadButtonStatuses, string> = {
   general: 'или перетащите сюда',
   upload: 'файл загружен!',
   parcing: 'идёт парсинг файла',
@@ -28,6 +30,8 @@ export const UploadButton = ({
   title,
   subtitle,
   onClick,
+  isDisabled = false,
+  setIsChoosing,
 }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -38,12 +42,14 @@ export const UploadButton = ({
   }, [status]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isDisabled) return;
     const file = e.target.files?.[0];
     if (file && file.type === 'text/csv') {
       onFileSelect?.(file);
     } else {
       onClear?.();
     }
+    setIsChoosing?.(false);
   };
 
   const isUploadMode = !!onFileSelect;
@@ -53,14 +59,19 @@ export const UploadButton = ({
       <div className={styles.firstRow}>
         {isUploadMode ? (
           <label
-            className={`${styles.input} ${styles[status]}`}
-            style={{ cursor: 'pointer' }}
+            className={`${styles.input} ${styles[status]} ${isDisabled ? styles.disabled : ''}`}
+            onClick={() => {
+              if (status === 'general') {
+                setIsChoosing?.(true);
+              }
+            }}
           >
             <input
               type="file"
               accept=".csv"
               ref={inputRef}
               onChange={handleChange}
+              disabled={isDisabled}
               style={{ display: 'none' }}
             />
             {status === 'parcing' && <Loader />}
@@ -71,13 +82,21 @@ export const UploadButton = ({
             className={`${styles.input} ${styles[status]}`}
             type="button"
             onClick={onClick}
+            disabled={isDisabled}
           >
             {status === 'parcing' && <Loader />}
             {status !== 'parcing' && (title || 'Кнопка')}
           </button>
         )}
 
-        {onClear && <DeleteIconButton onDelete={onClear} />}
+        {onClear && (
+          <DeleteIconButton
+            onDelete={() => {
+              setIsChoosing?.(false);
+              onClear();
+            }}
+          />
+        )}
       </div>
 
       <p
@@ -85,7 +104,7 @@ export const UploadButton = ({
           status === 'error' ? styles.errorTitle : ''
         }`}
       >
-        {subtitle ?? subtitles[status]}
+        {subtitle ?? defaultSubtitles[status]}
       </p>
     </div>
   );

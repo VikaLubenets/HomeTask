@@ -8,7 +8,7 @@ export const CsvGeneratorSection = () => {
   const { status, generate, fileUrl, clear } = useCsvGeneratorStore();
 
   const handleClick = () => {
-    if (status !== 'loading') {
+    if (status === 'idle') {
       generate({ size: 0.1 });
     }
   };
@@ -29,18 +29,29 @@ export const CsvGeneratorSection = () => {
       </Button>
     ),
     loading: (
-      <UploadButton status="parcing" subtitle="идёт процесс генерации" />
+      <UploadButton
+        status="parcing"
+        subtitle="идёт процесс генерации"
+        isDisabled={true}
+      />
     ),
     success: (
       <UploadButton
         status="ready"
         subtitle="файл сгенерирован!"
         title="Done!"
-        onClick={handleClick}
+        isDisabled={true}
         onClear={clear}
       />
     ),
-    error: <UploadButton status="error" title="Ошибка" onClear={clear} />,
+    error: (
+      <UploadButton
+        status="error"
+        title="Ошибка"
+        onClear={clear}
+        isDisabled={true}
+      />
+    ),
   };
 
   return (
