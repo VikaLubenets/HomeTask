@@ -48,7 +48,7 @@ export const FileUploadSection = () => {
     <section className={styles.section}>
       <p className={styles.text}>
         Загрузите <strong>csv</strong> файл и получите{' '}
-        <strong>полную информацию</strong> о нём за сверхнизкое время
+        <strong>полную информацию</strong> о нём за сверхнизкое время
       </p>
 
       <div
