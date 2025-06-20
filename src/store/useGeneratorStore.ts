@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getCsvReport } from '../api/CsvApi';
+import { getCsvReport } from '../api';
 
 export type GenStatus = 'idle' | 'loading' | 'success' | 'error';
 type CsvGeneratorState = {

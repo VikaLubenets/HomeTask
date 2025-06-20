@@ -1,9 +1,9 @@
-import type { AggregateResult } from "../api/CsvApi";
+import type { AggregateResult } from "../api/aggregateCsvReport";
 import { transformDate } from "./transformDate";
 
 const fmt = (v: unknown) => (v === undefined || v === null ? '—' : String(v));
 
-export const getDataForRows = (data: AggregateResult) => {
+export const transformDataForRows = (data: AggregateResult) => {
     const rows = [
       {
         subtitle: 'общие расходы в галактических кредитах',
