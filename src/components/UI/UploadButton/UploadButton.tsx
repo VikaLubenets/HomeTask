@@ -31,7 +31,7 @@ export const UploadButton = ({
   subtitle,
   onClick,
   isDisabled = false,
-  setIsChoosing
+  setIsChoosing,
 }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,14 +42,14 @@ export const UploadButton = ({
   }, [status]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (isDisabled) return;   
+    if (isDisabled) return;
     const file = e.target.files?.[0];
     if (file && file.type === 'text/csv') {
       onFileSelect?.(file);
     } else {
       onClear?.();
     }
-    setIsChoosing?.(false)
+    setIsChoosing?.(false);
   };
 
   const isUploadMode = !!onFileSelect;
@@ -61,8 +61,8 @@ export const UploadButton = ({
           <label
             className={`${styles.input} ${styles[status]} ${isDisabled ? styles.disabled : ''}`}
             onClick={() => {
-              if(status === 'general'){
-                setIsChoosing?.(true)
+              if (status === 'general') {
+                setIsChoosing?.(true);
               }
             }}
           >
@@ -89,10 +89,14 @@ export const UploadButton = ({
           </button>
         )}
 
-        {onClear && <DeleteIconButton onDelete={() => {
-          setIsChoosing?.(false)
-          onClear()
-        }} />}
+        {onClear && (
+          <DeleteIconButton
+            onDelete={() => {
+              setIsChoosing?.(false);
+              onClear();
+            }}
+          />
+        )}
       </div>
 
       <p

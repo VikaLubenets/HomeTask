@@ -29,7 +29,11 @@ export const CsvGeneratorSection = () => {
       </Button>
     ),
     loading: (
-      <UploadButton status="parcing" subtitle="идёт процесс генерации" isDisabled={true} />
+      <UploadButton
+        status="parcing"
+        subtitle="идёт процесс генерации"
+        isDisabled={true}
+      />
     ),
     success: (
       <UploadButton
@@ -40,7 +44,14 @@ export const CsvGeneratorSection = () => {
         onClear={clear}
       />
     ),
-    error: <UploadButton status="error" title="Ошибка" onClear={clear} isDisabled={true} />,
+    error: (
+      <UploadButton
+        status="error"
+        title="Ошибка"
+        onClear={clear}
+        isDisabled={true}
+      />
+    ),
   };
 
   return (
