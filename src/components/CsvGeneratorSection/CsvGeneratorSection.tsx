@@ -8,7 +8,7 @@ export const CsvGeneratorSection = () => {
   const { status, generate, fileUrl, clear } = useCsvGeneratorStore();
 
   const handleClick = () => {
-    if (status !== 'loading') {
+    if (status === 'idle') {
       generate({ size: 0.1 });
     }
   };
