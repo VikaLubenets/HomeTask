@@ -20,9 +20,9 @@
   background-color: var(--color-accent-primary);
 }
 
-.ready{
+.ready {
   background-color: transparent;
-  border: solid 1px #201B10;
+  border: solid 1px #201b10;
 }
 
 .text {

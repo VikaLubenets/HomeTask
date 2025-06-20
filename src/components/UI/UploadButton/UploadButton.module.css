@@ -63,6 +63,6 @@
   color: var(--color-orange);
 }
 
-.disabled{
+.disabled {
   cursor: default;
 }

@@ -5,8 +5,8 @@ import Layout from '../Layout/Layout';
 function AnaliticsPage() {
   return (
     <Layout>
-        <FileUploadSection />
-        <HighlightsSection />
+      <FileUploadSection />
+      <HighlightsSection />
     </Layout>
   );
 }

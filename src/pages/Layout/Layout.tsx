@@ -10,9 +10,7 @@ export default function Layout({ children, className }: Props) {
   return (
     <div className={`${styles.layout} ${className ? className : ''}`}>
       <Header />
-      <div className={styles.wrapper}>
-        {children}
-      </div>
+      <div className={styles.wrapper}>{children}</div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { useAnalyticsStore } from '../../store/useAnalyticsStore';
 export const FileUploadSection = () => {
   const { file, status, selectFile, clear, send } = useAnalyticsStore();
   const [dragActive, setDragActive] = useState(false);
-  const [isChoosing, setIsChoosing]   = useState(false);
+  const [isChoosing, setIsChoosing] = useState(false);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -38,7 +38,11 @@ export const FileUploadSection = () => {
   };
 
   const backgroundClass =
-    dragActive || isChoosing ? styles.green : status === 'general' ? styles.pink : styles.ready;
+    dragActive || isChoosing
+      ? styles.green
+      : status === 'general'
+        ? styles.pink
+        : styles.ready;
 
   return (
     <section className={styles.section}>

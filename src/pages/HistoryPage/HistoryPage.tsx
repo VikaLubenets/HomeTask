@@ -4,7 +4,7 @@ import { HistorySection } from '../../components/HistorySection/HistorySection';
 function HistoryPage() {
   return (
     <Layout>
-        <HistorySection />
+      <HistorySection />
     </Layout>
   );
 }

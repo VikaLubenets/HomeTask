@@ -4,7 +4,7 @@ import { CsvGeneratorSection } from '../../components/CsvGeneratorSection/CsvGen
 function GeneratorPage() {
   return (
     <Layout>
-        <CsvGeneratorSection />
+      <CsvGeneratorSection />
     </Layout>
   );
 }
