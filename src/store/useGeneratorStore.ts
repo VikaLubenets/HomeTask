@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { getCsvReport } from '../api';
 
 export type GenStatus = 'idle' | 'loading' | 'success' | 'error';
+
 type CsvGeneratorState = {
   status: GenStatus;
   fileUrl: string | null;
