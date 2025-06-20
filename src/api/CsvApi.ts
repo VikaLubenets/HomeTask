@@ -8,7 +8,7 @@ interface GetParamsI {
 
 export const getCsvReport = async ({
   size,
-  withErrors = 'off',
+  withErrors = 'on',
   maxSpend = '1000',
 }: GetParamsI): Promise<string> => {
   const url = new URL(`${BASE_URL}/report`);
