@@ -26,3 +26,15 @@
   text-transform: uppercase;
   font-style: normal;
 }
+
+@media (max-width: 1500px) {
+  .logoText {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .logoText {
+    font-size: 18px;
+  }
+}

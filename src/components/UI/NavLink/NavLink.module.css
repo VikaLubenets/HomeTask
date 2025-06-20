@@ -16,3 +16,16 @@
   width: 35px;
   height: 35px;
 }
+
+
+@media (max-width: 1500px) {
+  .link {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .link {
+    font-size: 18px;
+  }
+}
