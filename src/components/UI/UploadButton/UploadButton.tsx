@@ -32,6 +32,7 @@ export const UploadButton = ({
   onClick,
   isDisabled = false,
   setIsChoosing,
+  ...rest
 }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -61,7 +62,7 @@ export const UploadButton = ({
   const isUploadMode = !!onFileSelect;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} >
       <div className={styles.firstRow}>
         {isUploadMode ? (
           <label
@@ -71,6 +72,7 @@ export const UploadButton = ({
                 setIsChoosing?.(true);
               }
             }}
+            {...rest}
           >
             <input
               type="file"
@@ -89,6 +91,7 @@ export const UploadButton = ({
             type="button"
             onClick={onClick}
             disabled={isDisabled}
+            {...rest}
           >
             {status === 'parcing' && <Loader />}
             {status !== 'parcing' && (title || 'Кнопка')}

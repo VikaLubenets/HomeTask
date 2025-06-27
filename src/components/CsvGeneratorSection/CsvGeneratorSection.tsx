@@ -24,7 +24,7 @@ export const CsvGeneratorSection = () => {
 
   const statusMap = {
     idle: (
-      <Button styleType="GREEN" onClick={handleClick}>
+      <Button styleType="GREEN" onClick={handleClick} data-testid="idle-btn">
         Начать генерацию
       </Button>
     ),
@@ -33,6 +33,7 @@ export const CsvGeneratorSection = () => {
         status="parcing"
         subtitle="идёт процесс генерации"
         isDisabled={true}
+        data-testid="loading-btn"
       />
     ),
     success: (
@@ -42,6 +43,7 @@ export const CsvGeneratorSection = () => {
         title="Done!"
         isDisabled={true}
         onClear={clear}
+        data-testid="success-btn"
       />
     ),
     error: (
@@ -50,6 +52,7 @@ export const CsvGeneratorSection = () => {
         title="Ошибка"
         onClear={clear}
         isDisabled={true}
+        data-testid="error-btn"
       />
     ),
   };
