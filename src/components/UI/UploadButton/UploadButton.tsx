@@ -44,11 +44,17 @@ export const UploadButton = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return;
     const file = e.target.files?.[0];
-    if (file && file.type === 'text/csv') {
+    if (!file) return;
+
+    const isCsv = file.type === 'text/csv' || file.name.endsWith('.csv');
+    
+    if (isCsv) {
       onFileSelect?.(file);
     } else {
       onClear?.();
+      alert('Пожалуйста, загрузите файл в формате CSV');
     }
+    
     setIsChoosing?.(false);
   };
 

@@ -29,18 +29,25 @@ export async function aggregateCsvReport({
   const fd = new FormData();
   fd.append('file', file, file.name);
 
-  const res = await fetch(url.toString(), {
-    method: 'POST',
-    body: fd,
-  });
+  let res: Response;
+  try {
+    res = await fetch(url.toString(), {
+      method: 'POST',
+      body: fd,
+    });
+  } catch (err) {
+    throw new Error('Сервер недоступен. Попробуйте позже.');
+  }
 
   if (!res.ok) {
-    throw new Error('Failed to aggregate CSV report');
+    const msg = await res.text();
+    throw new Error(`Ошибка сервера: ${res.status} ${msg}`);
   }
 
   if (!res.body) {
-    throw new Error('Body is null');
+    throw new Error('Ответ от сервера не содержит данных');
   }
 
   return res.body;
 }
+
