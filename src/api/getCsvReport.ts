@@ -16,19 +16,11 @@ export const getCsvReport = async ({
   url.searchParams.set('withErrors', withErrors);
   url.searchParams.set('maxSpend', maxSpend);
 
-  let res: Response;
-  try {
-    res = await fetch(url.toString(), {
-      method: 'GET',
-    });
-  } catch (err) {
-    throw new Error('Сервер недоступен. Попробуйте позже.');
-  }
+  const res = await fetch(url.toString(), {
+    method: 'GET',
+  });
 
-  if (!res.ok) {
-    const msg = await res.text();
-    throw new Error(`Ошибка сервера: ${res.status} ${msg}`);
-  }
+  if (!res.ok) throw new Error('Failed to fetch CSV report');
 
   const csvText = await res.text();
   return csvText;
