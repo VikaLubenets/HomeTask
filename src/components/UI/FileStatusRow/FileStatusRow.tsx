@@ -10,7 +10,10 @@ type Props = {
   onDelete: (id: string) => void;
 };
 
-const titles: Record<FileStatuses, { title: string; iconSrcActive: string; iconSrcInactive: string }> = {
+const titles: Record<
+  FileStatuses,
+  { title: string; iconSrcActive: string; iconSrcInactive: string }
+> = {
   success: {
     title: 'Обработан успешно',
     iconSrcActive: './icons/smile_active.svg',

@@ -17,7 +17,6 @@
   flex: 1 0 auto;
 }
 
-
 @media (max-width: 1500px) {
   .layout {
     max-width: 1420px;
@@ -26,6 +25,6 @@
 
 @media (max-width: 1200px) {
   .layout {
-    max-width: 1120px;;
+    max-width: 1120px;
   }
 }

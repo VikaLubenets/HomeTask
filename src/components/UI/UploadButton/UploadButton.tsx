@@ -47,14 +47,14 @@ export const UploadButton = ({
     if (!file) return;
 
     const isCsv = file.type === 'text/csv' || file.name.endsWith('.csv');
-    
+
     if (isCsv) {
       onFileSelect?.(file);
     } else {
       onClear?.();
       alert('Пожалуйста, загрузите файл в формате CSV');
     }
-    
+
     setIsChoosing?.(false);
   };
 
@@ -95,14 +95,15 @@ export const UploadButton = ({
           </button>
         )}
 
-        {onClear && (status === 'error' || status === 'ready' || status === 'upload' ) && (
-          <DeleteIconButton
-            onDelete={() => {
-              setIsChoosing?.(false);
-              onClear();
-            }}
-          />
-        )}
+        {onClear &&
+          (status === 'error' || status === 'ready' || status === 'upload') && (
+            <DeleteIconButton
+              onDelete={() => {
+                setIsChoosing?.(false);
+                onClear();
+              }}
+            />
+          )}
       </div>
 
       <p

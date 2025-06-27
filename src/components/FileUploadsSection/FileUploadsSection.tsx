@@ -30,10 +30,11 @@ export const FileUploadSection = () => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-  
+
     const file = e.dataTransfer.files?.[0];
-    const isCsv = file && (file.type === 'text/csv' || file.name.endsWith('.csv'));
-  
+    const isCsv =
+      file && (file.type === 'text/csv' || file.name.endsWith('.csv'));
+
     if (isCsv) {
       selectFile(file);
     } else {
@@ -41,7 +42,6 @@ export const FileUploadSection = () => {
       alert('Пожалуйста, загрузите файл в формате .csv');
     }
   };
-  
 
   const backgroundClass =
     dragActive || isChoosing
@@ -49,8 +49,8 @@ export const FileUploadSection = () => {
       : status === 'general'
         ? styles.pink
         : status === 'error'
-        ? styles.error 
-        : styles.ready;
+          ? styles.error
+          : styles.ready;
 
   return (
     <section className={styles.section}>
