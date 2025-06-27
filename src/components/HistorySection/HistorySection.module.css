@@ -2,16 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .rowsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   gap: 7.5px;
+  width: 100%;
 }
 
 .btnContainer {
@@ -26,6 +26,5 @@
 }
 
 .disabled {
-  pointer-events: none;
   cursor: default;
 }
