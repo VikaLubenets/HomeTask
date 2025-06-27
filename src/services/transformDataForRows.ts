@@ -7,7 +7,7 @@ export const transformDataForRows = (data: AggregateResult) => {
   const rows = [
     {
       subtitle: 'общие расходы в галактических кредитах',
-      title: fmt(data.total_spend_galactic.toFixed(0)),
+      title: fmt(data.total_spend_galactic),
     },
     {
       subtitle: 'количество обработанных записей',
@@ -31,11 +31,11 @@ export const transformDataForRows = (data: AggregateResult) => {
     },
     {
       subtitle: 'максимальная сумма расходов за день',
-      title: fmt(data.big_spent_value.toFixed(0)),
+      title: fmt(data.big_spent_value),
     },
     {
       subtitle: 'средние расходы в галактических кредитах',
-      title: fmt(data.average_spend_galactic.toFixed(0)),
+      title: fmt(data.average_spend_galactic),
     },
   ];
 
