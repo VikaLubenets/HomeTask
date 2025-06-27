@@ -1,13 +1,13 @@
 import type { AggregateResult } from '../api/aggregateCsvReport';
 import { transformDate } from './transformDate';
 
-const fmt = <T>(v: T) => (v === undefined || v === null ? '—' : String(v));
+export const fmt = <T>(v: T) => (!v ? '—' : String(v));
 
 export const transformDataForRows = (data: AggregateResult) => {
   const rows = [
     {
       subtitle: 'общие расходы в галактических кредитах',
-      title: fmt(data.total_spend_galactic.toFixed(0)),
+      title: fmt(data.total_spend_galactic?.toFixed(0)),
     },
     {
       subtitle: 'количество обработанных записей',
@@ -31,11 +31,11 @@ export const transformDataForRows = (data: AggregateResult) => {
     },
     {
       subtitle: 'максимальная сумма расходов за день',
-      title: fmt(data.big_spent_value.toFixed(0)),
+      title: fmt(data.big_spent_value?.toFixed(0)),
     },
     {
       subtitle: 'средние расходы в галактических кредитах',
-      title: fmt(data.average_spend_galactic.toFixed(0)),
+      title: fmt(data.average_spend_galactic?.toFixed(0)),
     },
   ];
 

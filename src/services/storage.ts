@@ -1,6 +1,6 @@
 type StorageOption = 'localStorage' | 'sessionStorage';
 
-class CustomStorage {
+export class CustomStorage {
   private storage: Storage;
 
   constructor(type: StorageOption = 'localStorage') {

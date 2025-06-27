@@ -64,6 +64,7 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
           console.log('Некорректный чанк', chunk);
           continue;
         }
+        console.log('chunk', chunk)
         set(() => ({ result: chunk }));
       }
 
