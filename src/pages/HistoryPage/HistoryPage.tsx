@@ -3,8 +3,8 @@ import { HistorySection } from '../../components/HistorySection/HistorySection';
 
 function HistoryPage() {
   return (
-    <Layout>
-      <HistorySection />
+    <Layout data-testid="history-page">
+      <HistorySection/>
     </Layout>
   );
 }

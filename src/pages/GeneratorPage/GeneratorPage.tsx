@@ -3,7 +3,7 @@ import { CsvGeneratorSection } from '../../components/CsvGeneratorSection/CsvGen
 
 function GeneratorPage() {
   return (
-    <Layout>
+    <Layout data-testid="generator-page">
       <CsvGeneratorSection />
     </Layout>
   );

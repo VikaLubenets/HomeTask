@@ -6,9 +6,9 @@ type Props = {
   className?: string;
 };
 
-export default function Layout({ children, className }: Props) {
+export default function Layout({ children, className, ...rest }: Props) {
   return (
-    <div className={`${styles.layout} ${className ? className : ''}`}>
+    <div className={`${styles.layout} ${className ? className : ''}`} {...rest}>
       <Header />
       <div className={styles.wrapper}>{children}</div>
     </div>

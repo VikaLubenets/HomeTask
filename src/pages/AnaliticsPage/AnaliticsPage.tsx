@@ -4,7 +4,7 @@ import Layout from '../Layout/Layout';
 
 function AnaliticsPage() {
   return (
-    <Layout>
+    <Layout data-testid="analitics-page">
       <FileUploadSection />
       <HighlightsSection />
     </Layout>

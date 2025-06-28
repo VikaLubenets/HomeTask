@@ -71,6 +71,7 @@ export const FileStatusRow = ({
           e.stopPropagation();
           onDelete(id);
         }}
+        data-testid="btn-delete"
       >
         <img src="./icons/Trash.svg" alt="trash icon" className={styles.icon} />
       </div>

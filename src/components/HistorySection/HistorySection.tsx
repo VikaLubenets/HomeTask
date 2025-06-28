@@ -37,6 +37,7 @@ export const HistorySection = () => {
             const canOpenModal = row.status === 'success';
             return (
               <div
+                data-testid="data-row"
                 key={row.id}
                 className={`${styles.rowWrapper} ${!canOpenModal ? styles.disabled : ''}`}
                 onClick={() => {
@@ -52,7 +53,7 @@ export const HistorySection = () => {
         </div>
       )}
       <div className={styles.btnContainer}>
-        <Button onClick={() => navigate('/generation')}>
+        <Button onClick={() => navigate('/generation')} data-testid="btn-gen-more">
           Сгенерировать больше
         </Button>
         {data.length > 0 && (
@@ -62,6 +63,7 @@ export const HistorySection = () => {
               LStorage.clear();
               setData([]);
             }}
+            data-testid="btn-clear"
           >
             Очистить все
           </Button>

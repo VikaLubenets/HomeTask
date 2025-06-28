@@ -67,4 +67,5 @@ describe('CsvGeneratorSection on GenerationPage', () => {
     const errorBtn = await screen.findByTestId('error-btn');
     expect(errorBtn).toBeInTheDocument();
   });
+
 });
