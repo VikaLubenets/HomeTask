@@ -69,7 +69,7 @@ describe('FileUploadSection', () => {
     expect(selectFile).toHaveBeenCalledWith(file);
   });
 
-  it('drag&drop ignores non-csv file and shows alert', () => {
+  it('drag&drop ignores not csv file and shows alert', () => {
     const file = createFile('not-an-excel.txt', 'text/plain');
     vi.spyOn(window, 'alert').mockImplementation(() => {});
     renderComponent();
@@ -144,12 +144,12 @@ describe('FileUploadSection', () => {
       send,
     });
     renderComponent();
-    expect(screen.queryByTestId('send-btn')).not.toBeInTheDocument();
     expect(screen.getByTestId('loader')).toBeInTheDocument();
     expect(screen.getByText('идёт парсинг файла')).toBeInTheDocument();
+    expect(screen.queryByTestId('send-btn')).not.toBeInTheDocument();
   });
 
-  it('in case of request error there is a error button and no highlights', () => {
+  it('in case of request error there is an error button and no send btn', () => {
     (useAnalyticsStore as any).mockReturnValue({
       file: createFile('file.csv', 'text/csv'),
       status: 'error',
@@ -163,7 +163,7 @@ describe('FileUploadSection', () => {
     expect(screen.getByText('упс, не то...')).toBeInTheDocument();
   });
 
-  it('upon click on clear btn there is default component of hilights with no highlights and no file with default btn', () => {
+  it('upon click on clear btn there is default component with default btn', () => {
     (useAnalyticsStore as any).mockReturnValue({
       file: createFile('file.csv', 'text/csv'),
       status: 'ready',
@@ -174,5 +174,7 @@ describe('FileUploadSection', () => {
     renderComponent();
     fireEvent.click(screen.getByTestId('clear-btn'));
     expect(clear).toHaveBeenCalled();
+    expect(screen.queryByTestId('send-btn')).not.toBeInTheDocument();
+    expect(screen.getByTestId('upload-input')).toBeInTheDocument();
   });
 });

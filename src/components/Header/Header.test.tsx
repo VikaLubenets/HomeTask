@@ -5,7 +5,7 @@ import { Header } from './Header';
 
 const renderComponent = () => renderWithRouter(<Header />);
 
-describe('Header navigation (via navigate)', () => {
+describe('Header navigation', () => {
 
   afterEach(() => {
     cleanup();

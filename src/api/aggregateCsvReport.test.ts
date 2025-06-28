@@ -5,7 +5,7 @@ import { BASE_URL } from '.';
 describe('aggregateCsvReport api request', () => {
   const mockStream = {} as ReadableStream<Uint8Array>;
 
-  const mockFile = new File(['hello,world,and,sri'], 'test.csv', {
+  const mockFile = new File(['hello,world,and,shri'], 'test.csv', {
     type: 'text/csv',
   });
 

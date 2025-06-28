@@ -4,7 +4,7 @@ import { BASE_URL } from '.';
 
 describe('getCsvReport api request', () => {
   let mockFetch: ReturnType<typeof vi.fn>;
-
+  const testSize = 100;
   beforeAll(() => {
     mockFetch = vi.fn();
     global.fetch = mockFetch;
@@ -19,7 +19,6 @@ describe('getCsvReport api request', () => {
       ok: true,
       text: () => Promise.resolve('csv content'),
     });
-    const testSize = 100;
     await getCsvReport({ size: testSize });
 
     const expectedUrl = `${BASE_URL}/report?size=100&withErrors=on&maxSpend=1000`;
@@ -28,7 +27,7 @@ describe('getCsvReport api request', () => {
 
   it('throws error when fetch fails', async () => {
     mockFetch.mockRejectedValueOnce(new Error('Error'));
-    await expect(getCsvReport({ size: 100 })).rejects.toThrow(
+    await expect(getCsvReport({ size: testSize })).rejects.toThrow(
       'Сервер недоступен. Попробуйте позже.'
     );
   });
@@ -40,13 +39,12 @@ describe('getCsvReport api request', () => {
       status: 500,
     });
 
-    await expect(getCsvReport({ size: 100 })).rejects.toThrow(
+    await expect(getCsvReport({ size: testSize })).rejects.toThrow(
       'Ошибка сервера: 500 Internal Server Error'
     );
   });
 
   it('returns csv text when request is successful', async () => {
-    const testSize = 100;
     const testText = 'Hello,world';
     mockFetch.mockResolvedValueOnce({
       ok: true,
