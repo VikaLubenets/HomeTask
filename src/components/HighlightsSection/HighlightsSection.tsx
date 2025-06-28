@@ -23,7 +23,7 @@ export const HighlightsSection = () => {
     <section className={styles.section}>
       <div className={styles.container}>
         {rows.map((row, idx) => (
-          <Row key={idx} title={row.title} subtitle={row.subtitle} />
+          <Row key={idx} title={row.title} subtitle={row.subtitle} data-testid={`data-highlight-${idx}`} />
         ))}
       </div>
     </section>
