@@ -25,7 +25,11 @@ export const ModalShowRecord = ({ row, onClose }: Props) => {
 
   return createPortal(
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()} data-testid='show-modal'>
+      <div
+        className={styles.modal}
+        onClick={(e) => e.stopPropagation()}
+        data-testid="show-modal"
+      >
         <div className={styles.deleteBtnPosition}>
           <DeleteIconButton onDelete={onClose} />
         </div>

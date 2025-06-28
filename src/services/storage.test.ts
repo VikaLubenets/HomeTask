@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { CustomStorage } from './storage';
 
-
 describe('CustomStorage tests of', () => {
   let storage: CustomStorage;
   const key = 'key';
@@ -23,14 +22,14 @@ describe('CustomStorage tests of', () => {
   });
 
   it('localStorage should get an item', () => {
-    const spyGet = vi.spyOn(Storage.prototype, 'getItem')
+    const spyGet = vi.spyOn(Storage.prototype, 'getItem');
     spyGet.mockReturnValueOnce(JSON.stringify(value));
     const result = storage.get<typeof value>(key);
     expect(result).toEqual(value);
     expect(spyGet).toHaveBeenCalledWith(key);
   });
 
-  it('localStorage should remove an item', () => {  
+  it('localStorage should remove an item', () => {
     const spyRemove = vi.spyOn(Storage.prototype, 'removeItem');
     storage.remove(key);
     expect(spyRemove).toHaveBeenCalledWith(key);
@@ -43,7 +42,7 @@ describe('CustomStorage tests of', () => {
   });
 
   it('should return null on invalid JSON', () => {
-    const spyGet = vi.spyOn(Storage.prototype, 'getItem')
+    const spyGet = vi.spyOn(Storage.prototype, 'getItem');
     const key = 'broken';
     spyGet.mockReturnValueOnce('invalid-json');
     const result = storage.get(key);

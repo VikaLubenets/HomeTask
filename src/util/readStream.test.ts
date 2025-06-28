@@ -74,10 +74,7 @@ describe('readStream', () => {
   });
 
   it('throws on invalid JSON line', async () => {
-    const stream = createStream([
-      '{"valid":true}\n',
-      '{not valid: JSON}\n',
-    ]);
+    const stream = createStream(['{"valid":true}\n', '{not valid: JSON}\n']);
     const result: unknown[] = [];
     const readAll = async () => {
       for await (const item of readStream(stream)) {
@@ -87,5 +84,4 @@ describe('readStream', () => {
 
     await expect(readAll()).rejects.toThrow(SyntaxError);
   });
-
 });

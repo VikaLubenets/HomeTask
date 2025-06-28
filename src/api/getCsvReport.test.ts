@@ -28,23 +28,22 @@ describe('getCsvReport api request', () => {
 
   it('throws error when fetch fails', async () => {
     mockFetch.mockRejectedValueOnce(new Error('Error'));
-    await expect(getCsvReport({ size: 100 }))
-      .rejects
-      .toThrow('Сервер недоступен. Попробуйте позже.');
+    await expect(getCsvReport({ size: 100 })).rejects.toThrow(
+      'Сервер недоступен. Попробуйте позже.'
+    );
   });
-  
+
   it('throws error when response is not ok', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
       text: () => Promise.resolve('Internal Server Error'),
       status: 500,
     });
-  
-    await expect(getCsvReport({ size: 100 }))
-      .rejects
-      .toThrow('Ошибка сервера: 500 Internal Server Error');
+
+    await expect(getCsvReport({ size: 100 })).rejects.toThrow(
+      'Ошибка сервера: 500 Internal Server Error'
+    );
   });
-  
 
   it('returns csv text when request is successful', async () => {
     const testSize = 100;

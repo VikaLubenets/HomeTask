@@ -53,7 +53,10 @@ export const HistorySection = () => {
         </div>
       )}
       <div className={styles.btnContainer}>
-        <Button onClick={() => navigate('/generation')} data-testid="btn-gen-more">
+        <Button
+          onClick={() => navigate('/generation')}
+          data-testid="btn-gen-more"
+        >
           Сгенерировать больше
         </Button>
         {data.length > 0 && (

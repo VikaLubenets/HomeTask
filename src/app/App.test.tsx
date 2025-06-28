@@ -19,5 +19,4 @@ describe('App routes', () => {
     renderAtRoute(<App />, { route: '/history' });
     expect(screen.getByTestId('history-page')).toBeInTheDocument();
   });
-})
-
+});

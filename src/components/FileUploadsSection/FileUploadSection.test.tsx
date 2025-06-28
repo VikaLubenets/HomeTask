@@ -1,6 +1,14 @@
 import '@testing-library/jest-dom/vitest';
 import { screen, cleanup, render, fireEvent } from '@testing-library/react';
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import { FileUploadSection } from './FileUploadsSection';
 import { useAnalyticsStore } from '../../store/useAnalyticsStore';
 import { LStorage } from '../../services/storage';
@@ -14,7 +22,8 @@ const mockSet = vi.fn();
 
 const renderComponent = () => render(<FileUploadSection />);
 
-const createFile = (name: string, type: string) => new File(['a,b'], name, { type });
+const createFile = (name: string, type: string) =>
+  new File(['a,b'], name, { type });
 
 describe('FileUploadSection', () => {
   beforeAll(() => {
@@ -28,7 +37,6 @@ describe('FileUploadSection', () => {
     } as any;
   });
 
-  
   beforeEach(() => {
     vi.clearAllMocks();
     (useAnalyticsStore as any).mockReturnValue({
@@ -49,15 +57,15 @@ describe('FileUploadSection', () => {
     const file = createFile('file.csv', 'text/csv');
     renderComponent();
     const dropArea = screen.getByTestId('drop-area');
-  
+
     fireEvent.dragEnter(dropArea, {
       dataTransfer: new DataTransfer(),
     });
-  
+
     fireEvent.drop(dropArea, {
       dataTransfer: { files: [file] },
     });
-  
+
     expect(selectFile).toHaveBeenCalledWith(file);
   });
 
@@ -65,20 +73,22 @@ describe('FileUploadSection', () => {
     const file = createFile('not-an-excel.txt', 'text/plain');
     vi.spyOn(window, 'alert').mockImplementation(() => {});
     renderComponent();
-  
+
     const dropArea = screen.getByTestId('drop-area');
-  
+
     fireEvent.dragEnter(dropArea, {
       dataTransfer: new DataTransfer(),
     });
-  
+
     fireEvent.drop(dropArea, {
       dataTransfer: { files: [file] },
     });
-  
+
     expect(clear).toHaveBeenCalled();
     expect(selectFile).not.toHaveBeenCalled();
-    expect(window.alert).toHaveBeenCalledWith('Пожалуйста, загрузите файл в формате .csv');
+    expect(window.alert).toHaveBeenCalledWith(
+      'Пожалуйста, загрузите файл в формате .csv'
+    );
   });
 
   it('there is a button to upload file in default state', () => {
@@ -93,7 +103,7 @@ describe('FileUploadSection', () => {
     const input = screen.getByTestId('upload-input') as HTMLInputElement;
     expect(input.accept).toBe('.csv');
   });
-  
+
   it('when csv file is uploaded there is an active btn "отправить"', () => {
     (useAnalyticsStore as any).mockReturnValue({
       file: createFile('file.csv', 'text/csv'),

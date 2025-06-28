@@ -9,17 +9,17 @@ import { transformDataForRows } from '../../services/transformDataForRows';
 
 vi.mock('../../services/storage');
 
-const mockedNavigate = vi.fn()
+const mockedNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
-  const actual = (await vi.importActual<typeof import('react-router-dom')>(
-    'react-router-dom'
-  ))!
+  const actual =
+    (await vi.importActual<typeof import('react-router-dom')>(
+      'react-router-dom'
+    ))!;
   return {
     ...actual,
     useNavigate: () => mockedNavigate,
-  }
-})
-
+  };
+});
 
 const mockSet = vi.fn();
 const mockClear = vi.fn();
@@ -48,7 +48,9 @@ describe('HistorySection', () => {
   let getSpy: ReturnType<typeof vi.spyOn>;
   beforeEach(() => {
     vi.clearAllMocks();
-    getSpy = vi.spyOn(LStorage, 'get').mockReturnValue([]) as ReturnType<typeof vi.spyOn>;
+    getSpy = vi.spyOn(LStorage, 'get').mockReturnValue([]) as ReturnType<
+      typeof vi.spyOn
+    >;
     vi.spyOn(LStorage, 'set').mockImplementation(mockSet);
     vi.spyOn(LStorage, 'clear').mockImplementation(mockClear);
   });
@@ -147,26 +149,26 @@ describe('HistorySection', () => {
   });
 
   it("button 'Сгенерировать больше' calls redirect to  route '/generation'", () => {
-    renderComponent()
-    const generateBtn = screen.getByTestId('btn-gen-more')
-    fireEvent.click(generateBtn)
-    expect(mockedNavigate).toHaveBeenCalledWith('/generation')
-  })
-  
-  it("click on success row in UI opens modal with relevant highlights", () => {
+    renderComponent();
+    const generateBtn = screen.getByTestId('btn-gen-more');
+    fireEvent.click(generateBtn);
+    expect(mockedNavigate).toHaveBeenCalledWith('/generation');
+  });
+
+  it('click on success row in UI opens modal with relevant highlights', () => {
     getSpy.mockReturnValue([historyRow]);
     const result = transformDataForRows(historyRow.result);
-    renderComponent()
-    const dataRow = screen.getByTestId('data-row')
-    fireEvent.click(dataRow)
-    expect(screen.getByTestId('show-modal')).toBeInTheDocument()
+    renderComponent();
+    const dataRow = screen.getByTestId('data-row');
+    fireEvent.click(dataRow);
+    expect(screen.getByTestId('show-modal')).toBeInTheDocument();
     result.forEach((r) => {
-      expect(screen.getByText(r.title)).toBeInTheDocument()
-      expect(screen.getByText(r.subtitle)).toBeInTheDocument()
-    })
-  })
-  
-  it("click on error row in UI does not open modal with relevant highlights", () => {
+      expect(screen.getByText(r.title)).toBeInTheDocument();
+      expect(screen.getByText(r.subtitle)).toBeInTheDocument();
+    });
+  });
+
+  it('click on error row in UI does not open modal with relevant highlights', () => {
     const errorEntry = {
       id: 1750432752050,
       fileName: 'report (7).csv',
@@ -174,11 +176,9 @@ describe('HistorySection', () => {
       status: 'error',
     };
     getSpy.mockReturnValue([errorEntry]);
-    renderComponent()
-    const dataRow = screen.getByTestId('data-row')
-    fireEvent.click(dataRow)
-    expect(screen.queryByTestId('show-modal')).not.toBeInTheDocument()
-  })
+    renderComponent();
+    const dataRow = screen.getByTestId('data-row');
+    fireEvent.click(dataRow);
+    expect(screen.queryByTestId('show-modal')).not.toBeInTheDocument();
+  });
 });
-
-

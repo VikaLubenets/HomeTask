@@ -62,7 +62,7 @@ export const UploadButton = ({
   const isUploadMode = !!onFileSelect;
 
   return (
-    <div className={styles.wrapper} >
+    <div className={styles.wrapper}>
       <div className={styles.firstRow}>
         {isUploadMode ? (
           <label
@@ -101,7 +101,7 @@ export const UploadButton = ({
         {onClear &&
           (status === 'error' || status === 'ready' || status === 'upload') && (
             <DeleteIconButton
-              data-testid='clear-btn'
+              data-testid="clear-btn"
               onDelete={() => {
                 setIsChoosing?.(false);
                 onClear();

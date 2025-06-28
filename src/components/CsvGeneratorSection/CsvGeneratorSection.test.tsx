@@ -28,7 +28,6 @@ vi.mock('../../store/useGeneratorStore', () => ({
   }),
 }));
 
-
 const renderComponent = () => render(<CsvGeneratorSection />);
 
 describe('CsvGeneratorSection on GenerationPage', () => {
@@ -67,5 +66,4 @@ describe('CsvGeneratorSection on GenerationPage', () => {
     const errorBtn = await screen.findByTestId('error-btn');
     expect(errorBtn).toBeInTheDocument();
   });
-
 });

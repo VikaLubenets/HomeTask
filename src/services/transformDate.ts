@@ -1,5 +1,5 @@
 export const transformDate = (dayNum: number): string => {
-  if(dayNum == null) return '';
+  if (dayNum == null) return '';
 
   const baseDate = new Date(2024, 0, 1);
   baseDate.setDate(baseDate.getDate() + dayNum);

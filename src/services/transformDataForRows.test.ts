@@ -19,7 +19,10 @@ describe('transformDataForRows', () => {
     const result = transformDataForRows(fullMockData);
 
     expect(result).toEqual([
-      { subtitle: 'общие расходы в галактических кредитах', title: '1220977431' },
+      {
+        subtitle: 'общие расходы в галактических кредитах',
+        title: '1220977431',
+      },
       { subtitle: 'количество обработанных записей', title: '2440000' },
       { subtitle: 'день года с минимальными расходами', title: '7 ноября' },
       { subtitle: 'цивилизация с максимальными расходами', title: 'monsters' },
