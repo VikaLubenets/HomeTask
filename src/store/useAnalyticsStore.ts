@@ -6,6 +6,7 @@ import type {
   AggregateResult,
   AggregateState,
 } from '../api/aggregateCsvReport';
+import { sendAnalytics } from '../services/sendAnalitics';
 
 export type UploadButtonStatuses =
   | 'general'
@@ -50,42 +51,16 @@ export const useAnalyticsStore = create<AnalyticsState>((set, get) => ({
   send: async (rows = 10000) => {
     const { file, status } = get();
     if (!file || status === 'parcing') return;
-
-    let hadError = false;
-
+  
     try {
       set({ status: 'parcing', result: null });
-
-      const stream = await aggregateCsvReport({ rows, file });
-      if (!stream) throw new Error('Поток aggregateCsvReport пустой');
-
-      for await (const chunk of readStream<AggregateResult>(stream)) {
-        if (!chunk || typeof chunk !== 'object') {
-          console.log('Некорректный чанк', chunk);
-          continue;
-        }
-        console.log('chunk', chunk);
+      const { result } = await sendAnalytics(file, rows, (chunk) => {
         set(() => ({ result: chunk }));
-      }
-
-      set({ status: 'ready' });
+      });
+      set({ status: 'ready', result });
     } catch (e) {
-      hadError = true;
-      console.error('send() упал в useAnalyticsStore:', e);
       set({ error: (e as Error).message, status: 'error' });
-    } finally {
-      const history = LStorage.get<HistoryEntry[]>(LS_KEY) ?? [];
-      const { result } = get();
-
-      const newRecord = {
-        id: `${Date.now()}`,
-        fileName: file.name,
-        date: new Date().toISOString(),
-        status: hadError ? 'error' : 'success',
-        result,
-      };
-
-      LStorage.set(LS_KEY, [...history, newRecord]);
     }
-  },
+  }
+  
 }));
