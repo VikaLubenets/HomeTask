@@ -9,7 +9,7 @@ export const CsvGeneratorSection = () => {
 
   const handleClick = () => {
     if (status === 'idle') {
-      generate({ size: 0.1 });
+      generate({ size: 0.01 });
     }
   };
 

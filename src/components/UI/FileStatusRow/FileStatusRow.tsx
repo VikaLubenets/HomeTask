@@ -10,6 +10,12 @@ type Props = {
   onDelete: (id: string) => void;
 };
 
+const MAX_LENGTH = 14;
+
+const getShortenedFileName = (name: string) => {
+  return name.length > MAX_LENGTH ? name.slice(0, MAX_LENGTH - 3) + '...' : name;
+};
+
 const titles: Record<
   FileStatuses,
   { title: string; iconSrcActive: string; iconSrcInactive: string }
@@ -42,7 +48,7 @@ export const FileStatusRow = ({
             alt="file icon"
             className={styles.icon}
           />
-          <p>{fileName}</p>
+          <p>{getShortenedFileName(fileName)}</p>
         </div>
         <p>{new Date(date).toLocaleDateString('ru-RU')}</p>
         {(['success', 'error'] as const).map((type) => (
