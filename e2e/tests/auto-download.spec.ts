@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Здесь я намеренно НЕ мокаю API вызов генерации CSV
+// Здесь я намеренно не мокаю API вызов генерации CSV
 // Потому что этот e2e-тест проверяет ключевой пользовательский сценарий end-to-end:
 // 1. Пользователь нажимает кнопку генерации
 // 2. Система делает реальный запрос к серверу
