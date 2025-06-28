@@ -13,11 +13,11 @@ test('uploads csv file via file input', async ({ page }) => {
   await page.goto('/');
 
   const fileInput = await page.getByTestId('upload-input');
-  const filePath = resolve(__dirname, '../fixtures/test.csv');
+  const filePath = resolve(__dirname, '../fixtures/testFile.csv');
 
   await fileInput.setInputFiles(filePath);
 
-  await expect(page.getByText('test.csv')).toBeVisible();
+  await expect(page.getByText('testFile.csv')).toBeVisible();
 });
 
 test('drag and drop csv file to upload', async ({ page }) => {
@@ -29,7 +29,7 @@ test('drag and drop csv file to upload', async ({ page }) => {
   const fileContent = 'one,two\nthree,four';
   const dataTransfer = await page.evaluateHandle((csv) => {
     const dt = new DataTransfer();
-    const file = new File([csv], 'test.csv', { type: 'text/csv' });
+    const file = new File([csv], 'testFile.csv', { type: 'text/csv' });
     dt.items.add(file);
     return dt;
   }, fileContent);
@@ -43,7 +43,7 @@ test('drag and drop csv file to upload', async ({ page }) => {
     });
   }
 
-  await expect(page.getByText('test.csv')).toBeVisible();
+  await expect(page.getByText('testFile.csv')).toBeVisible();
 });
 
 

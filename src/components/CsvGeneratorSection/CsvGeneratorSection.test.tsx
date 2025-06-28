@@ -56,7 +56,7 @@ describe('CsvGeneratorSection on GenerationPage', () => {
     const btn = screen.getByTestId('idle-btn');
     fireEvent.click(btn);
 
-    expect(generateMock).toHaveBeenCalledWith({ size: 0.1 });
+    expect(generateMock).toHaveBeenCalledWith({ size: 0.01 });
   });
 
   it('if error happens, user sees special error btn with info about error', async () => {
