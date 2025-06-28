@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { UploadButton } from '../UI/UploadButton/UploadButton';
 import { Button } from '../UI/Button/Button';
 import styles from './FileUploadsSection.module.css';
@@ -8,6 +8,8 @@ export const FileUploadSection = () => {
   const { file, status, selectFile, clear, send } = useAnalyticsStore();
   const [dragActive, setDragActive] = useState(false);
   const [isChoosing, setIsChoosing] = useState(false);
+
+  const dropRef = useRef<HTMLDivElement>(null);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -23,7 +25,11 @@ export const FileUploadSection = () => {
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(false);
+
+    const related = e.relatedTarget as Node | null;
+    if (!dropRef.current?.contains(related)) {
+      setDragActive(false);
+    }
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -60,6 +66,8 @@ export const FileUploadSection = () => {
       </p>
 
       <div
+        data-testid="drop-area"
+        ref={dropRef}
         className={`${styles.background} ${backgroundClass}`}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
@@ -73,11 +81,13 @@ export const FileUploadSection = () => {
           onFileSelect={selectFile}
           onClear={clear}
           setIsChoosing={setIsChoosing}
+          data-testid="upload-input"
         />
       </div>
 
       {(status === 'general' || status === 'upload') && (
         <Button
+          data-testid="send-btn"
           type="button"
           styleType={status === 'upload' ? 'GREEN' : 'INACTIVE'}
           disabled={status !== 'upload'}

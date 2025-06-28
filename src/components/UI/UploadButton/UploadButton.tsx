@@ -72,7 +72,6 @@ export const UploadButton = ({
                 setIsChoosing?.(true);
               }
             }}
-            {...rest}
           >
             <input
               type="file"
@@ -81,6 +80,7 @@ export const UploadButton = ({
               onChange={handleChange}
               disabled={isDisabled}
               style={{ display: 'none' }}
+              {...rest}
             />
             {status === 'parcing' && <Loader />}
             {status !== 'parcing' && (title || 'Загрузить файл')}
@@ -101,6 +101,7 @@ export const UploadButton = ({
         {onClear &&
           (status === 'error' || status === 'ready' || status === 'upload') && (
             <DeleteIconButton
+              data-testid='clear-btn'
               onDelete={() => {
                 setIsChoosing?.(false);
                 onClear();

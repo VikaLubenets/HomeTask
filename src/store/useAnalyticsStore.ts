@@ -24,7 +24,7 @@ export interface HistoryEntry {
   result?: AggregateState;
 }
 
-interface AnalyticsState {
+export interface AnalyticsState {
   file: File | null;
   status: UploadButtonStatuses;
   result: AggregateState;
